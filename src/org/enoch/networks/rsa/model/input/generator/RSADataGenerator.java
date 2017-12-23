@@ -1,4 +1,4 @@
-package org.enoch.networks.utils;
+package org.enoch.networks.rsa.model.input.generator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
