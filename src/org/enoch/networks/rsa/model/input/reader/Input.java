@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.enoch.networks.rsa.business.ShortestPathGenerator;
 import org.enoch.networks.utils.InputDataReader;
 import org.enoch.networks.utils.InputDataReader.InputDataReaderException;
 
@@ -305,5 +306,18 @@ public class Input {
 		String instance = "resources/Spain.dat";
 		Input input = new Input(instance, false, false, false, 0, 0);
 		System.out.println("input read successfully");
+
+		int k = 0;
+		System.out.println("Compute shortest path for request: " + k);
+		ShortestPathGenerator shortestPathGenerator = new ShortestPathGenerator(input);
+		double[] linkCosts = new double[input.linkNumber];
+		for (int l = 0; l < input.linkNumber; l++) {
+			linkCosts[l] = 1;
+		}
+		shortestPathGenerator.populate(linkCosts);
+		double sum = shortestPathGenerator.solve(k);
+		System.out.println("shortest path cost: " + sum);
+		List<Integer> edgeList = shortestPathGenerator.getPath();
+		System.out.println("shortest path links: " + edgeList);
 	}
 }
